@@ -1,0 +1,3 @@
+rootProject.name = 'influencerAPP'
+
+include ':app'

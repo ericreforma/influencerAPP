@@ -1,3 +1,10 @@
 {
-  "extends" : "rallycoding"
+  "extends" : "rallycoding",
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
 }

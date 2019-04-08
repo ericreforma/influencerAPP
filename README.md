@@ -3,6 +3,10 @@
 Dependencies installed
 * react-native-gesture-handler
 * react-navigation
+* react-native-gesture-handler
+* react-native-linear-gradient
+* react-redux
+* redux
 
 You can install a linter to detect errors on atom
 

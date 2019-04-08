@@ -1,9 +1,14 @@
-import React from 'react';
-import { Text, AppRegistry } from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry } from 'react-native';
+import LandingPage from './app/pages/LandingPage';
 
-const App = () => (
-    <Text> Some Text </Text>
-  );
+class App extends Component {
+  render() {
+    return (
+      <LandingPage />
+      // <Routes />
+    );
+  }
+}
 
-
-AppRegistry.registerComponent('influencerApp', () => App);
+AppRegistry.registerComponent('influencerAPP', () => App);

@@ -12,6 +12,8 @@ export default class SocMedIcon extends Component {
             facebook: require('../assets/image/icons/facebook_icon.png'),
             google: require('../assets/image/icons/google_icon.png'),
             instagram: require('../assets/image/icons/instagram_icon.png'),
+            youtube: require('../assets/image/icons/youtube_icon.png'),
+            twitter: require('../assets/image/icons/twitter_icon.png'),
         };
 
         return (

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { ImageBackground, Text, View, Image } from 'react-native';
+import { ImageBackground, Text, View, Image, TouchableHighlight } from 'react-native';
 import ButtonWhite from '../components/ButtonWhite';
 import ButtonGradient from '../components/ButtonGradient';
 import SocMedIcon from '../components/SocMedIcon';
 import styles from '../styles/page.Intro.style';
 
 export default class LandingPage extends Component {
+  socMedClick = (type) => {
+    alert(type);
+  }
+
   render() {
     return (
       <ImageBackground
@@ -42,9 +46,15 @@ export default class LandingPage extends Component {
           </Text>
 
           <View style={styles.introViewSocMed}>
-            <SocMedIcon type="facebook" />
+            <TouchableHighlight
+              onPress={() => this.socMedClick('facebook')}>
+              <SocMedIcon type="facebook" />
+            </TouchableHighlight>
 
-            <SocMedIcon type="google" />
+            <TouchableHighlight
+              onPress={() => this.socMedClick('google')}>
+              <SocMedIcon type="google" />
+            </TouchableHighlight>
           </View>
 
         </View>

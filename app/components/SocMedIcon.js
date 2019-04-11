@@ -3,19 +3,41 @@ import { TouchableHighlight, Text, Image } from 'react-native';
 import style from '../styles/component.Icon.style';
 
 export default class SocMedIcon extends Component {
-    render() {
-        var icon = {
-            facebook: require('../assets/image/icons/facebook_icon.png'),
-            google: require('../assets/image/icons/google_icon.png'),
-            instagram: require('../assets/image/icons/instagram_icon.png'),
-            youtube: require('../assets/image/icons/youtube_icon.png'),
-            twitter: require('../assets/image/icons/twitter_icon.png'),
-        };
+    socialMedia = (type, notANumber) => {
+        var socMedType = [
+            {
+                type: 'facebook',
+                url: require('../assets/image/icons/facebook_icon.png'),
+            },
+            {
+                type: 'instagram',
+                url: require('../assets/image/icons/instagram_icon.png'),
+            },
+            {
+                type: 'youtube',
+                url: require('../assets/image/icons/youtube_icon.png'),
+            },
+            {
+                type: 'twitter',
+                url: require('../assets/image/icons/twitter_icon.png'),
+            },
+            {
+                type: 'google',
+                url: require('../assets/image/icons/google_icon.png'),
+            },
+        ];
 
+        var returnValue = notANumber ? socMedType.filter(smt => smt.type == type)[0].url : socMedType[type].url;
+        console.log(returnValue);
+        console.log(type);
+        return returnValue;
+    }
+
+    render() {
         return (
             <Image
                 style={style.socMedIcon}
-                source={icon[this.props.type]}
+                source={this.socialMedia(this.props.type, isNaN(this.props.type))}
             />
         );
     }

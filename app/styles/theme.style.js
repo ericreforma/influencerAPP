@@ -7,11 +7,11 @@ export default {
   COLOR_RED: '#ff3c00',
   COLOR_RED_DARK: '#d75a4a',
   COLOR_BLACK: '#000124',
-  COLOR_WHITE: '#fff',
+  COLOR_WHITE: '#ffffff',
   COLOR_GRAY_HEAVY: '#515151',
   COLOR_GRAY_MEDIUM: '#999999',
   COLOR_GRAY_LIGHT: '#cccaca',
-  COLOR_NOTIFICATION: '#000',
+  COLOR_NOTIFICATION: '#000000',
   COLOR_PAGE: '#fafafa',
   COLOR_PAGE_HIGHLIGHT: '#f0f0f0',
 

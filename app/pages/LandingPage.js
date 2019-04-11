@@ -47,12 +47,14 @@ export default class LandingPage extends Component {
 
           <View style={styles.introViewSocMed}>
             <TouchableHighlight
-              onPress={() => this.socMedClick('facebook')}>
+              onPress={() => this.socMedClick('facebook')}
+            >
               <SocMedIcon type="facebook" />
             </TouchableHighlight>
 
             <TouchableHighlight
-              onPress={() => this.socMedClick('google')}>
+              onPress={() => this.socMedClick('google')}
+            >
               <SocMedIcon type="google" />
             </TouchableHighlight>
           </View>

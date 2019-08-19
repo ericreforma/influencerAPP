@@ -14,6 +14,7 @@ export default StyleSheet.create({
     },
     buttonTextCommon: {
       textAlign: 'center',
+      fontFamily: 'AvenirLTStd-Medium',
       fontSize: 18
     },
     buttonWhiteText: {
@@ -21,5 +22,9 @@ export default StyleSheet.create({
     },
     buttonGradientText: {
       color: theme.COLOR_WHITE
+    },
+    buttonBorder: {
+      borderWidth: 0.5,
+      borderColor: theme.COLOR_GRAY_MEDIUM
     }
 });

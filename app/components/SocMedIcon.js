@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Text, Image } from 'react-native';
-import style from '../styles/component.Icon.style';
+import {
+    TouchableHighlight,
+    Image
+} from 'react-native';
 
 export default class SocMedIcon extends Component {
     socialMedia = (type, notANumber) => {
@@ -28,17 +30,22 @@ export default class SocMedIcon extends Component {
         ];
 
         var returnValue = notANumber ? socMedType.filter(smt => smt.type == type)[0].url : socMedType[type].url;
-        console.log(returnValue);
-        console.log(type);
+        
         return returnValue;
     }
 
     render() {
         return (
-            <Image
-                style={style.socMedIcon}
-                source={this.socialMedia(this.props.type, isNaN(this.props.type))}
-            />
+            <TouchableHighlight
+                onPress={this.props.onPress}
+            >
+                <Image
+                    style={{
+                        margin: 10
+                    }}
+                    source={this.socialMedia(this.props.type, isNaN(this.props.type))}
+                />
+            </TouchableHighlight>
         );
     }
 }

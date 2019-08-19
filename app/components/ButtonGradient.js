@@ -7,11 +7,14 @@ import theme from '../styles/theme.style';
 export default class ButtonGradient extends Component {
   render() {
     return (
-      <TouchableOpacity style={style.buttonCommon}>
+      <TouchableOpacity
+        style={style.buttonCommon}
+        onPress={this.props.onPress}
+      >
         <LinearGradient
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
-          colors={[theme.COLOR_BLUE, theme.COLOR_BLUE_LIGHT]}
+          colors={[theme.COLOR_BLUE, theme.COLOR_BLUE_LIGHT_GRADIENT]}
           style={[style.buttonCommon]}
         >
           <Text style={[style.buttonTextCommon, style.buttonGradientText]}>

@@ -1,66 +1,89 @@
 import React, { Component } from 'react';
-import { ImageBackground, Text, View, Image, TouchableHighlight } from 'react-native';
+import {
+	ImageBackground,
+	View
+} from 'react-native';
+
 import ButtonWhite from '../components/ButtonWhite';
 import ButtonGradient from '../components/ButtonGradient';
 import SocMedIcon from '../components/SocMedIcon';
-import styles from '../styles/page.Intro.style';
+import {
+    WelcomeLabel,
+    WelcomeCommon,
+    WelcomeAdditional
+} from '../components/Text';
+
+import theme from '../styles/theme.style';
+import lang from '../assets/language/welcome';
 
 export default class LandingPage extends Component {
-  socMedClick = (type) => {
-    alert(type);
-  }
+	socMedClick = (type) => () => {
+		alert(type);
+	}
 
-  render() {
-    return (
-      <ImageBackground
-        source={require('../assets/image/landing_page_bg.jpg')}
-        style={styles.introContainer}
-      >
-        <View>
+	render() {
+		return (
+			<ImageBackground
+				source={theme.welcomeStyle.landingImageBackground}
+				style={{
+					flex: 1,
+					paddingHorizontal: theme.welcomeStyle.PADDING_HORIZONTAL,
+				}}
+			>
+				<View
+					style={{
+						flex: 1.75,
+						justifyContent: 'flex-end',
+						marginBottom: 20
+					}}
+				>
+					<WelcomeLabel text={lang.landingPage.headerText} />
+					<WelcomeCommon text={lang.landingPage.additionalText} />
+				</View>
+				
+				<View
+					style={{
+						flex: 1,
+					}}
+				>
+					<View>
+						<ButtonWhite
+							text={lang.landingPage.loginText}
+							onPress={() => this.props.navigation.navigate('Login')}
+						/>
 
-          <Text
-            style={[styles.introTextCommon, styles.landingPageHeader]}
-          >
-            WHERE { '\n' }
-            CREATORS ARE { '\n' }
-            COLLABORATORS
-          </Text>
+						<ButtonGradient
+							text={lang.landingPage.signUpText}
+							onPress={() => this.props.navigation.navigate('Signup')}
+						/>
+					</View>
 
-          <Text
-            style={[styles.introTextCommon, styles.landingPageText]}
-          >
-            Be part of the platform that connects brands to influencers
-            in a fast convinient way.
-          </Text>
+					<View
+						style={{
+							marginBottom: 20
+						}}
+					>
+						<WelcomeAdditional text={lang.landingPage.alternativeLoginText} />
 
-          <View>
-            <ButtonWhite text="Log In" />
+						<View style={{
+							flexDirection: 'row',
+							justifyContent: 'center',
+							alignContent: 'space-between',
+							marginBottom: 10,
+						}}>
+							<SocMedIcon
+								type="facebook"
+								onPress={this.socMedClick('facebook')}
+							/>
 
-            <ButtonGradient text="Sign Up" />
-          </View>
-
-          <Text
-            style={[styles.introAdditionalText, styles.landingPageLoginWith]}
-          >
-            Or log in with
-          </Text>
-
-          <View style={styles.introViewSocMed}>
-            <TouchableHighlight
-              onPress={() => this.socMedClick('facebook')}
-            >
-              <SocMedIcon type="facebook" />
-            </TouchableHighlight>
-
-            <TouchableHighlight
-              onPress={() => this.socMedClick('google')}
-            >
-              <SocMedIcon type="google" />
-            </TouchableHighlight>
-          </View>
-
-        </View>
-      </ImageBackground>
-    );
-  }
+							<SocMedIcon
+								type="google"
+								onPress={this.socMedClick('facebook')}
+							/>
+						</View>
+					</View>
+				</View>
+			</ImageBackground>
+		);
+	}
 }

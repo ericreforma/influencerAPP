@@ -34,6 +34,7 @@ export default class LandingPage extends Component {
           </View>
 
         </View>
+
       </ImageBackground>
     );
   }

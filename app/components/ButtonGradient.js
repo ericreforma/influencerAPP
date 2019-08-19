@@ -17,7 +17,7 @@ export default class ButtonGradient extends Component {
           <Text style={[style.buttonTextCommon, style.buttonGradientText]}>
             {this.props.text}
           </Text>
-          
+
         </LinearGradient>
       </TouchableOpacity>
     );

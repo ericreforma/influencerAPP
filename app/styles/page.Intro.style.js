@@ -13,13 +13,28 @@ export default StyleSheet.create({
       color: theme.COLOR_WHITE,
 
     },
+    introAdditionalText: {
+      marginTop: 20,
+      color: theme.COLOR_GRAY_HEAVY,
+    },
+    introViewSocMed: {
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignContent: 'space-between',
+      marginBottom: 10,
+    },
     landingPageHeader: {
       fontSize: 35,
-      fontFamily: 'AvenirLTStd-Heavy'
+      fontFamily: 'AvenirLTStd-Heavy',
     },
     landingPageText: {
       fontSize: 20,
       fontFamily: 'AvenirLTStd-Medium',
       marginBottom: 30,
+    },
+    landingPageLoginWith: {
+      textAlign: 'center',
+      fontSize: 15,
+      fontFamily: 'AvenirLTStd-Medium',
     },
 });

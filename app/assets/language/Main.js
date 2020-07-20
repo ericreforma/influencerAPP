@@ -1,5 +1,5 @@
 export default {
-    appName: 'EngageMate',
+    appName: 'Hatchery',
     navigation: {
         viewProfileText: 'View Profile',
         earningsText: 'Earnings',

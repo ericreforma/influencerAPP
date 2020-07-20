@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
-import {
-	ImageBackground,
-	View
-} from 'react-native';
-
-import ButtonWhite from '../components/ButtonWhite';
-import ButtonGradient from '../components/ButtonGradient';
-import SocMedIcon from '../components/SocMedIcon';
-import {
-    WelcomeLabel,
-    WelcomeCommon,
-    WelcomeAdditional
-} from '../components/Text';
+import { ImageBackground, View, ActivityIndicator, Text } from 'react-native';
+import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
+import { AuthAction } from '../redux/actions/auth.action';
+import NavigationService from '../services/navigation';
+import { GradientButton, WhiteButton, SMAButton } from '../components/Button';
+import { WelcomeLabel, WelcomeCommon, WelcomeAdditional } from '../components/Text';
 
 import theme from '../styles/theme.style';
 import lang from '../assets/language/welcome';
 
-export default class LandingPage extends Component {
-	socMedClick = (type) => () => {
-		alert(type);
+class LandingPage extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			isModalVisible: false
+		};
 	}
 
+	signingInModal = () =>	
+		<Modal isVisible={this.state.isModalVisible} >
+			<View 
+				style={{ 
+					backgroundColor: '#fff',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					paddingVertical: 25,
+					paddingHorizontal: 55,
+					alignContent: 'center'
+				}}
+			>
+				<Text style={{ fontSize: 25, alignSelf: 'center' }}>
+					Signing In
+				</Text>
+				<ActivityIndicator size="large" color="#0000ff" />
+			</View>
+		</Modal>
+		
 	render() {
 		return (
 			<ImageBackground
@@ -28,57 +45,52 @@ export default class LandingPage extends Component {
 				style={{
 					flex: 1,
 					paddingHorizontal: theme.welcomeStyle.PADDING_HORIZONTAL,
+					justifyContent: 'flex-end',
 				}}
 			>
-				<View
-					style={{
-						flex: 1.75,
-						justifyContent: 'flex-end',
-						marginBottom: 20
-					}}
-				>
+				<View>
+					{ this.signingInModal() }
 					<WelcomeLabel text={lang.landingPage.headerText} />
 					<WelcomeCommon text={lang.landingPage.additionalText} />
 				</View>
-				
-				<View
-					style={{
-						flex: 1,
-					}}
-				>
-					<View>
-						<ButtonWhite
-							text={lang.landingPage.loginText}
-							onPress={() => this.props.navigation.navigate('Login')}
-						/>
 
-						<ButtonGradient
+				<View>
+					<View>
+						<WhiteButton
+							text={lang.landingPage.loginText}
+							onPress={() => NavigationService.navigate('Login')}
+						/>
+						<GradientButton
 							text={lang.landingPage.signUpText}
-							onPress={() => this.props.navigation.navigate('Signup')}
+							onPress={() => NavigationService.navigate('Signup')}
 						/>
 					</View>
 
-					<View
-						style={{
-							marginBottom: 20
-						}}
-					>
+					<View style={{ marginBottom: 20 }} >
 						<WelcomeAdditional text={lang.landingPage.alternativeLoginText} />
 
-						<View style={{
-							flexDirection: 'row',
-							justifyContent: 'center',
-							alignContent: 'space-between',
-							marginBottom: 10,
-						}}>
-							<SocMedIcon
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'center',
+								alignContent: 'space-between',
+								marginBottom: 10,
+							}}
+						>
+							<SMAButton
 								type="facebook"
-								onPress={this.socMedClick('facebook')}
+								onPress={
+									() => {
+										this.props.LoginFacebook();
+									}
+								}
 							/>
 
-							<SocMedIcon
+							<SMAButton
 								type="google"
-								onPress={this.socMedClick('facebook')}
+								onPress={() => {
+									this.props.LoginGoogle();
+								}}
 							/>
 						</View>
 					</View>
@@ -87,3 +99,10 @@ export default class LandingPage extends Component {
 		);
 	}
 }
+
+const mapDispatchToProps = (dispatch) => ({
+	LoginFacebook: () =>	dispatch(AuthAction.firebase.facebook()),
+	LoginGoogle: () =>	dispatch(AuthAction.firebase.google()),
+  });
+  
+export default connect(null, mapDispatchToProps)(LandingPage);

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "553833031460",
+    "firebase_url": "https://influencerapp-872a0.firebaseio.com",
+    "project_id": "influencerapp-872a0",
+    "storage_bucket": "influencerapp-872a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553833031460:android:fed8c3c6b37f58cd6db5b1",
+        "android_client_info": {
+          "package_name": "com.influencerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553833031460-3l6to10lqpfeeko8rd1bppvgumipjjf8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATBA_LCofZECZ9CNu-OQUUHD5kd6ZgNuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553833031460-3l6to10lqpfeeko8rd1bppvgumipjjf8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

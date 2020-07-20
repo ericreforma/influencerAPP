@@ -7,18 +7,35 @@ export default StyleSheet.create({
         paddingHorizontal: theme.welcomeStyle.PADDING_HORIZONTAL
     },
     containerFlex: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'space-between',
     },
     containerCenter: {
         justifyContent: 'center',
         alignItems: 'center'
     },
+    mainContent: {
+        flex: 1
+    },
     containerInputs: {
-        justifyContent: 'space-between',
         paddingBottom: '7%'
     },
     containerPageInfo: {
-        justifyContent: 'flex-end',
         paddingBottom: 10
+    },
+
+    signupInstead: {
+        color: '#fff',
+        alignSelf: 'center',
+        fontSize: 15,
+    },
+    inputGroup: {
+        marginBottom: 20
+    },
+    inputWrapper: {
+        marginBottom: 35
+    },
+    forgotPassword: {
+        marginBottom: 20
     }
 });

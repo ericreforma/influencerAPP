@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">influencerAPP</string>
+    <string name="app_name">Hatchery</string>
+    <string name="facebook_app_id">444577043132712</string>
+    <string name="fb_login_protocol_scheme">fb444577043132712</string>
 </resources>

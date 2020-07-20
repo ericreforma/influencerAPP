@@ -1,67 +1,108 @@
 import React, { Component } from 'react';
-import { ImageBackground, Text, View, Image, TouchableHighlight } from 'react-native';
-import ButtonWhite from '../components/ButtonWhite';
-import ButtonGradient from '../components/ButtonGradient';
-import SocMedIcon from '../components/SocMedIcon';
-import styles from '../styles/page.Intro.style';
+import { ImageBackground, View, ActivityIndicator, Text } from 'react-native';
+import { connect } from 'react-redux';
+import Modal from 'react-native-modal';
+import { AuthAction } from '../redux/actions/auth.action';
+import NavigationService from '../services/navigation';
+import { GradientButton, WhiteButton, SMAButton } from '../components/Button';
+import { WelcomeLabel, WelcomeCommon, WelcomeAdditional } from '../components/Text';
 
-export default class LandingPage extends Component {
-  socMedClick = (type) => {
-    alert(type);
-  }
+import theme from '../styles/theme.style';
+import lang from '../assets/language/welcome';
 
-  render() {
-    return (
-      <ImageBackground
-        source={require('../assets/image/landing_page_bg.jpg')}
-        style={styles.introContainer}
-      >
-        <View>
+class LandingPage extends Component {
+	constructor(props) {
+		super(props);
 
-          <Text
-            style={[styles.introTextCommon, styles.landingPageHeader]}
-          >
-            WHERE { '\n' }
-            CREATORS ARE { '\n' }
-            COLLABORATORS
-          </Text>
+		this.state = {
+			isModalVisible: false
+		};
+	}
 
-          <Text
-            style={[styles.introTextCommon, styles.landingPageText]}
-          >
-            Be part of the platform that connects brands to influencers
-            in a fast convinient way.
-          </Text>
+	signingInModal = () =>	
+		<Modal isVisible={this.state.isModalVisible} >
+			<View 
+				style={{ 
+					backgroundColor: '#fff',
+					flexDirection: 'row',
+					justifyContent: 'space-between',
+					paddingVertical: 25,
+					paddingHorizontal: 55,
+					alignContent: 'center'
+				}}
+			>
+				<Text style={{ fontSize: 25, alignSelf: 'center' }}>
+					Signing In
+				</Text>
+				<ActivityIndicator size="large" color="#0000ff" />
+			</View>
+		</Modal>
+		
+	render() {
+		return (
+			<ImageBackground
+				source={theme.welcomeStyle.landingImageBackground}
+				style={{
+					flex: 1,
+					paddingHorizontal: theme.welcomeStyle.PADDING_HORIZONTAL,
+					justifyContent: 'flex-end',
+				}}
+			>
+				<View>
+					{ this.signingInModal() }
+					<WelcomeLabel text={lang.landingPage.headerText} />
+					<WelcomeCommon text={lang.landingPage.additionalText} />
+				</View>
 
-          <View>
-            <ButtonWhite text="Log In" />
+				<View>
+					<View>
+						<WhiteButton
+							text={lang.landingPage.loginText}
+							onPress={() => NavigationService.navigate('Login')}
+						/>
+						<GradientButton
+							text={lang.landingPage.signUpText}
+							onPress={() => NavigationService.navigate('Signup')}
+						/>
+					</View>
 
-            <ButtonGradient text="Sign Up" />
-          </View>
+					<View style={{ marginBottom: 20 }} >
+						<WelcomeAdditional text={lang.landingPage.alternativeLoginText} />
 
-          <Text
-            style={[styles.introAdditionalText, styles.landingPageLoginWith]}
-          >
-            Or log in with
-          </Text>
+						<View
+							style={{
+								flexDirection: 'row',
+								justifyContent: 'center',
+								alignContent: 'space-between',
+								marginBottom: 10,
+							}}
+						>
+							<SMAButton
+								type="facebook"
+								onPress={
+									() => {
+										this.props.LoginFacebook();
+									}
+								}
+							/>
 
-          <View style={styles.introViewSocMed}>
-            <TouchableHighlight
-              onPress={() => this.socMedClick('facebook')}
-            >
-              <SocMedIcon type="facebook" />
-            </TouchableHighlight>
-
-            <TouchableHighlight
-              onPress={() => this.socMedClick('google')}
-            >
-              <SocMedIcon type="google" />
-            </TouchableHighlight>
-          </View>
-
-        </View>
-
-      </ImageBackground>
-    );
-  }
+							<SMAButton
+								type="google"
+								onPress={() => {
+									this.props.LoginGoogle();
+								}}
+							/>
+						</View>
+					</View>
+				</View>
+			</ImageBackground>
+		);
+	}
 }
+
+const mapDispatchToProps = (dispatch) => ({
+	LoginFacebook: () =>	dispatch(AuthAction.firebase.facebook()),
+	LoginGoogle: () =>	dispatch(AuthAction.firebase.google()),
+  });
+  
+export default connect(null, mapDispatchToProps)(LandingPage);
